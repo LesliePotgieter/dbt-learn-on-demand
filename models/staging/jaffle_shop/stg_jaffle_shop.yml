@@ -2,18 +2,25 @@ version: 2
 
 models:
     - name: stg_customers
+      description: Staged customer data from our jaffle shop app.
       columns:
         - name: customer_id
+          description: The primary key for customers.
           tests:
           - unique
           - not_null
+        - name: first_name
+          description: Name used to call the customer by.
     - name: stg_orders
+      description: Staged order data from our jaffle shop app.
       columns:
         - name: order_id
+          description: Primary key for orders.
           tests:
           - unique
           - not_null
         - name: status
+          description: '{{ doc("order_status") }}'
           tests:
           - accepted_values:
               values: 
@@ -27,3 +34,9 @@ models:
           - relationships:
               to: ref('stg_customers')
               field: customer_id
+    - name: stg_payments
+      columns:
+        - name: amount
+          description: amount is stored in cents, converted it to dollars
+        - name: payment_method
+          description: '{{ doc("payment_method") }}'

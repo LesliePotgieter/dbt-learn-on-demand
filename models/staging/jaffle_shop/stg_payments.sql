@@ -8,7 +8,7 @@ with payments as (
         -- amount is stored in cents, convert it to dollars
         AMOUNT / 100 as amount,
         CREATED as created_at
-    from raw.stripe.payment
+    from {{ source('stripe','payment') }}
 )
 
 select * from payments

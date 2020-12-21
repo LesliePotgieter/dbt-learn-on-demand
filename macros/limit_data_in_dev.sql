@@ -3,3 +3,4 @@
 where {{ column_name }} >= dateadd('day', - {{ dev_days_of_data }}, current_timestamp)
 {% endif %}
 {% endmacro %}
+
